@@ -20,13 +20,15 @@ const socialIcons: Record<string, IconType> = {
   dribbble: Mail,
 };
 
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.9, ease: easeOut },
   },
 };
 
@@ -56,7 +58,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.1, duration: 0.9, ease: easeOut }}
           className="text-[clamp(2.5rem,9vw,8rem)] leading-[0.95] tracking-tight text-white font-light font-display mb-8"
         >
           Building{" "}
@@ -72,7 +74,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          transition={{ delay: 0.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.3, duration: 0.9, ease: easeOut }}
           className="grid md:grid-cols-[1fr_auto] gap-8 md:gap-16 mb-12 items-end"
         >
           <p className="text-lg md:text-xl text-charcoal-muted leading-relaxed max-w-xl">
@@ -105,7 +107,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.5, duration: 0.9, ease: easeOut }}
           className="flex flex-wrap items-center gap-3 mb-20"
         >
           <a
@@ -154,7 +156,7 @@ export function Hero() {
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          transition={{ delay: 0.7, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ delay: 0.7, duration: 0.9, ease: easeOut }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 pt-8 border-t border-white/5"
         >
           {siteConfig.stats.map((stat) => (

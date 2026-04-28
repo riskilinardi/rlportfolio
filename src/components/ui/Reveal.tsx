@@ -3,6 +3,8 @@
 import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
 const variants: Record<string, Variants> = {
   fadeUp: {
     hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
@@ -10,7 +12,7 @@ const variants: Record<string, Variants> = {
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.8, ease: easeOut },
     },
   },
   fade: {
@@ -25,7 +27,7 @@ const variants: Record<string, Variants> = {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.8, ease: easeOut },
     },
   },
   fadeRight: {
@@ -33,7 +35,7 @@ const variants: Record<string, Variants> = {
     visible: {
       opacity: 1,
       x: 0,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.8, ease: easeOut },
     },
   },
   scaleUp: {
@@ -41,7 +43,7 @@ const variants: Record<string, Variants> = {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.8, ease: easeOut },
     },
   },
 };
