@@ -157,7 +157,7 @@ export function Hero() {
           animate="visible"
           variants={fadeUp}
           transition={{ delay: 0.7, duration: 0.9, ease: easeOut }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 pt-8 border-t border-white/5"
+          className="grid grid-cols-3 gap-4 md:gap-10 pt-8 border-t border-white/5"
         >
           {siteConfig.stats.map((stat) => (
             <div key={stat.label}>

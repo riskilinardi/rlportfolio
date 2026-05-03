@@ -21,6 +21,7 @@ export const projects: Project[] = [
       "Zustand",
       "Tailscale",
     ],
+    image: "/trackery.png",
     links: {},
     highlights: [
       "Built a responsive frontend using React and Electron, connecting directly to a remote PostgreSQL database for real-time inventory syncing.",
@@ -41,6 +42,7 @@ export const projects: Project[] = [
     year: 2026,
     featured: true,
     tech: ["Flutter", "Dart", "REST APIs"],
+    image: "/togethersafe.png",
     links: {},
     highlights: [
       "Integrated REST APIs to push real-time emergency alerts and safety updates directly to users.",

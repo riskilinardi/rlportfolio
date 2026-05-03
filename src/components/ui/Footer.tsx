@@ -7,10 +7,10 @@ export function Footer() {
     <footer className="relative px-6 md:px-10 py-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs text-charcoal-muted">
         <span>
-          © {year} — {siteConfig.fullName}
+          © {year} - {siteConfig.fullName}
         </span>
         <span className="font-display italic">
-          Crafted with care in {siteConfig.location}
+          Crafted with care in Singapore
         </span>
       </div>
     </footer>

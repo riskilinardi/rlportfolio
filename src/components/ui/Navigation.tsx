@@ -50,7 +50,7 @@ export function Navigation() {
           <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
           <span className="font-display italic text-sm tracking-wide text-white group-hover:text-accent-light transition-colors">
             {siteConfig.name}
-            <span className="text-accent">.</span>
+            <span className="text-accent"></span>
           </span>
         </Link>
 

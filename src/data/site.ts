@@ -1,7 +1,7 @@
 import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-  name: "rl",
+  name: "Riski Linardi",
   fullName: "Riski Linardi",
   tagline: "Engineering intelligent systems from concept to production.",
   description:
@@ -37,8 +37,7 @@ export const siteConfig: SiteConfig = {
   stats: [
     { value: "5+", label: "Projects shipped" },
     { value: "6+", label: "Years coding" },
-    { value: "4", label: "Awards & honors" },
-    { value: "2", label: "IRAS book prizes" },
+    { value: "5", label: "Awards & honors" },
   ],
 
   bio: [
@@ -47,5 +46,5 @@ export const siteConfig: SiteConfig = {
     "Outside of work and classes, I like to build things end-to-end. Whether I'm building Trackery (a custom desktop inventory system) or my final year project, TogetherSafe (a cross-platform emergency app), I enjoy working across the entire stack. I really believe the best engineers understand how everything connects, from the database all the way to the UI.",
   ],
 
-  photo: "/me.jpg",
+  photo: "/me.png",
 };
