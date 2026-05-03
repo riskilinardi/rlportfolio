@@ -36,7 +36,7 @@ export function Contact() {
       <Reveal animation="scaleUp">
         <div className="relative max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-charcoal-muted-deep mb-6">
-            <span className="font-mono text-accent">05</span>
+            <span className="font-mono text-accent">04</span>
             <span className="w-8 h-px bg-accent/40" />
             Contact
             <span className="w-8 h-px bg-accent/40" />

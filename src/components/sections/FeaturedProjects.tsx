@@ -191,7 +191,7 @@ export function FeaturedProjects() {
           <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-charcoal-muted-deep mb-3 flex items-center gap-2">
-                <span className="font-mono text-accent">03</span>
+                <span className="font-mono text-accent">02</span>
                 <span className="w-8 h-px bg-accent/40" />
                 Selected Work
               </div>

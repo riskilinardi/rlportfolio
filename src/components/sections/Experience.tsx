@@ -31,7 +31,7 @@ export function Experience() {
         <Reveal>
           <div className="mb-14">
             <div className="text-xs uppercase tracking-[0.2em] text-charcoal-muted-deep mb-3 flex items-center gap-2">
-              <span className="font-mono text-accent">04</span>
+              <span className="font-mono text-accent">03</span>
               <span className="w-8 h-px bg-accent/40" />
               Experience
             </div>
