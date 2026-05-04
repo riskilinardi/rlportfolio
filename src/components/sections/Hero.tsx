@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Mail, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/brand-icons";
 import { siteConfig } from "@/data/site";
 import type { ComponentType, SVGProps } from "react";
@@ -118,6 +118,22 @@ export function Hero() {
               View selected work
               <ArrowUpRight
                 size={16}
+                className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
+              />
+            </span>
+          </a>
+
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group px-6 py-3.5 rounded-full border border-accent/30 bg-accent/5 backdrop-blur text-sm text-accent-light hover:border-accent/60 hover:bg-accent/15 hover:text-white transition-all"
+          >
+            <span className="flex items-center gap-2">
+              <FileText size={14} />
+              View resume
+              <ArrowUpRight
+                size={14}
                 className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
               />
             </span>

@@ -7,7 +7,7 @@ export const siteConfig: SiteConfig = {
   description:
     "Graduate Software Engineer specializing in Machine Learning & AI. I build production-grade web, mobile, and desktop applications with a focus on clean architecture and scalable deployment.",
 
-  url: "http://localhost:3000",
+  url: "https://riskilinardi.vercel.app",
 
   location: "Singapore",
   availableForWork: true,

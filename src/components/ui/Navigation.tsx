@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { siteConfig } from "@/data/site";
 
 const navLinks = [
@@ -50,7 +50,7 @@ export function Navigation() {
           <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
           <span className="font-display italic text-sm tracking-wide text-white group-hover:text-accent-light transition-colors">
             {siteConfig.name}
-            <span className="text-accent"></span>
+            <span className="text-accent">.</span>
           </span>
         </Link>
 
@@ -62,26 +62,37 @@ export function Navigation() {
               onClick={(e) => handleAnchorClick(e, link.href)}
               className="group relative text-sm text-charcoal-muted hover:text-white transition-colors"
             >
-              <span className="mr-2 text-[10px] text-charcoal-muted-deep font-mono"></span>
               {link.label}
               <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
             </a>
           ))}
         </div>
 
-        <a
-          href={`mailto:${siteConfig.email}`}
-          className="group relative px-4 py-2 rounded-full text-xs border border-white/10 hover:border-accent/50 text-white overflow-hidden transition-all"
-        >
-          <span className="relative z-10 flex items-center gap-1.5">
-            Let&apos;s talk
-            <ArrowUpRight
-              size={12}
-              className="group-hover:rotate-45 transition-transform"
-            />
-          </span>
-          <span className="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-        </a>
+        <div className="flex items-center gap-2">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:flex group relative px-4 py-2 rounded-full text-xs border border-white/10 hover:border-accent/50 text-charcoal-muted hover:text-white items-center gap-1.5 transition-colors"
+          >
+            <FileText size={12} />
+            Resume
+          </a>
+
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="group relative px-4 py-2 rounded-full text-xs border border-white/10 hover:border-accent/50 text-white overflow-hidden transition-all"
+          >
+            <span className="relative z-10 flex items-center gap-1.5">
+              Let&apos;s talk
+              <ArrowUpRight
+                size={12}
+                className="group-hover:rotate-45 transition-transform"
+              />
+            </span>
+            <span className="absolute inset-0 bg-accent/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </a>
+        </div>
       </div>
     </nav>
   );
