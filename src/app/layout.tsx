@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { Fraunces, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { LenisProvider } from "@/components/ui/LenisProvider";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
@@ -125,6 +126,7 @@ export default function RootLayout({
       <body className="bg-charcoal-bg text-charcoal-text font-sans antialiased selection:bg-accent/30 selection:text-white">
         <LenisProvider />
         {children}
+        <Analytics />
       </body>
     </html>
   );
