@@ -8,7 +8,7 @@ export const experience: ExperienceItem[] = [
     location: "Singapore",
     period: "Apr 2023 — Apr 2026",
     description:
-      "Specialised in Machine Learning and AI. Awarded the IRAS Book Prize twice (Gold in 2025, Silver in 2024) for top academic performance. Final Year Project: TogetherSafe — a cross-platform emergency coordination app built solo.",
+      "Focused my studies on Machine Learning and AI while building full-stack and mobile projects on the side, like my Flutter capstone, TogetherSafe. I worked hard to keep my grades up alongside my coding projects and was awarded the IRAS Book Prize twice (Gold in 2024, Silver in 2025).",
     type: "education",
   },
   {
@@ -18,7 +18,7 @@ export const experience: ExperienceItem[] = [
     location: "Singapore",
     period: "Feb 2021 — Apr 2021",
     description:
-      "Continued core development on the enterprise Inventory Management System following my internship. Focused on database query optimisation, feature development, and mobile app extension with an Agile team.",
+      "NEC brought me back on contract to fix the database bottlenecks we hit after the initial launch. I rewrote the SQL queries and adjusted the schema to handle massive data uploads smoothly. I also built a companion Flutter app so the staff could check inventory straight from their phones.",
     tech: ["Dart", "C#", "SQL", "ASP.NET"],
     type: "work",
   },
@@ -29,7 +29,7 @@ export const experience: ExperienceItem[] = [
     location: "Singapore",
     period: "Sep 2020 — Jan 2021",
     description:
-      "Core developer on an enterprise Inventory Management System. Optimised backend queries for a database handling 100,000+ active records, fixed concurrency bottlenecks, and developed new features following strict Clean Code practices.",
+      "I led a small intern team to build a C# inventory system from scratch, replacing the department's old Excel sheets in just five months. We handled the entire process ourselves, from gathering requirements from the admin staff to deploying the system on Azure and loading in 100,000+ rows of legacy data.",
     tech: ["C#", "SQL", "ASP.NET"],
     type: "work",
   },
@@ -40,7 +40,7 @@ export const experience: ExperienceItem[] = [
     location: "Singapore",
     period: "Apr 2018 — Apr 2021",
     description:
-      "Foundation in software engineering. Director's Roll of Honour (2018). Competed in PolyFinTech100 API Hackathon (1st Runner-up, 2020) and vSplash Awards (1st Runner-up, 2020 — Assurance: ML & computer vision for vehicle damage assessment).",
+      "This is where I got my start in programming. Beyond my classes (where I made the 2018 Director's Roll of Honour), I spent a lot of time testing my skills in hackathons. I took 1st Runner-up at both the PolyFinTech100 Hackathon and the vSplash Awards, where I pitched an early computer vision prototype.",
     type: "education",
   },
 ];
