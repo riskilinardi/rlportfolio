@@ -29,7 +29,7 @@ export const experience: ExperienceItem[] = [
     location: "Singapore",
     period: "Sep 2020 — Jan 2021",
     description:
-      "Core developer on an enterprise Inventory Management System. Optimised backend queries for a database handling 50,000+ active records, fixed concurrency bottlenecks, and developed new features following strict Clean Code practices.",
+      "Core developer on an enterprise Inventory Management System. Optimised backend queries for a database handling 100,000+ active records, fixed concurrency bottlenecks, and developed new features following strict Clean Code practices.",
     tech: ["C#", "SQL", "ASP.NET"],
     type: "work",
   },

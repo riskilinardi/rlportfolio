@@ -63,7 +63,7 @@ export function Contact() {
 
           <p className="text-charcoal-muted text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-12">
             Whether it&apos;s a full-stack application, a machine learning
-            prototype, or something unusual that hasn&apos;t been tried yet —
+            prototype, or something unusual that hasn&apos;t been tried yet,
             I&apos;d love to hear about it.
           </p>
 

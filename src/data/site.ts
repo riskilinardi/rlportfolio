@@ -41,9 +41,9 @@ export const siteConfig: SiteConfig = {
   ],
 
   bio: [
-    "I recently graduated with a Computer Science degree (specializing in Machine Learning & AI) from SIM UOL. For me, software engineering isn't just about making things work. It's about writing clean code, building systems that scale smoothly, and creating interfaces people actually enjoy using.",
-    "I got my start at NEC Asia Pacific, where I helped develop and optimise an enterprise database handling over 50,000 active records. Fixing concurrency bottlenecks there taught me a lot about why good architecture matters just as much as the code itself. I also work hard to maintain consistent performance, which helped me earn the IRAS Book Prize (Gold in 2025, Silver in 2024).",
-    "Outside of work and classes, I like to build things end-to-end. Whether I'm building Trackery (a custom desktop inventory system) or my final year project, TogetherSafe (a cross-platform emergency app), I enjoy working across the entire stack. I really believe the best engineers understand how everything connects, from the database all the way to the UI.",
+    "I’m a recent Computer Science graduate from SIM UOL, specializing in Machine Learning and AI. For me, software engineering is about understanding how every single piece of a system connects.",
+    "I got my start at NEC Asia Pacific, where I helped migrate a legacy enterprise system to Azure. Later, I came back on contract to rework the SQL schemas and fix bulk-insert bottlenecks for over 100,000 records. Dealing with those concurrency issues taught me exactly why solid architecture matters just as much as the code itself. I also pushed hard to keep my academic performance consistent, earning the IRAS Book Prize (Gold in 2024, Silver in 2025).",
+    "Outside of work, I build end-to-end applications. My recent projects range from Trackery (a custom React/Node.js desktop inventory system) and TogetherSafe (a cross-platform emergency app) to fine-tuning a BERT classifier for NLP. I like working across the entire stack because it lets me take an idea and ship it as a complete, polished product.",
   ],
 
   photo: "/me.png",
