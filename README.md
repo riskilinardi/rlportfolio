@@ -5,7 +5,6 @@ Hey! Welcome to the repo for my personal website: [riskilinardi.vercel.app](http
 I'm a Software Engineer based in Singapore focusing on ML, AI, and full-stack development. I built this site to keep track of what I'm working on and to share my projects in one place.
 
 ## Built with
-*(Note: adjust these if you used a different stack!)*
 - Next.js / React
 - Tailwind CSS
 - Vercel for hosting
