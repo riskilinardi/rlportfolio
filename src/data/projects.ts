@@ -3,6 +3,7 @@ import type { Project } from "@/types";
 export const projects: Project[] = [
   {
     id: "trackery",
+    image: "/trackery.png",
     slug: "trackery",
     title: "Trackery",
     tagline:
@@ -30,6 +31,7 @@ export const projects: Project[] = [
   },
   {
     id: "fakenews-bert",
+    image: "/FakeNewsBert.png",
     slug: "fakenews-bert",
     title: "Fake News Classifier",
     tagline: "Fine-tuned BERT with explainability, deployed end-to-end.",
@@ -53,14 +55,15 @@ export const projects: Project[] = [
       github: "https://github.com/riskilinardi/fake-news-bert",
     },
     highlights: [
-      "Fine-tuned bert-base-uncased on the PolitiFact dataset (~21,000 statements) and compared 5 model architectures — finding the accuracy ceiling lies with the task, not the model capacity.",
+      "Fine-tuned bert-base-uncased on the PolitiFact dataset (~21,000 statements) and compared 5 model architectures, finding the accuracy ceiling lies with the task, not the model capacity.",
       "Implemented token-level explainability using integrated gradients (more reliable than raw attention per Jain & Wallace 2019), so users can see which words influenced the prediction.",
-      "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub — each component deployable independently.",
+      "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub, each component deployable independently.",
       "Production-grade concerns: per-IP rate limiting, CORS-locked endpoints, pytest with fast unit tests using a fake classifier and opt-in integration tests against the real model.",
     ],
   },
   {
     id: "togethersafe",
+    image: "/togethersafe.png",
     slug: "togethersafe",
     title: "TogetherSafe",
     tagline:
@@ -72,7 +75,7 @@ export const projects: Project[] = [
     year: 2026,
     featured: true,
     tech: ["Flutter", "Dart", "REST APIs"],
-    links: {},
+    links: { github: "https://github.com/riskilinardi/TogetherSafe" },
     highlights: [
       "Integrated REST APIs to push real-time emergency alerts and safety updates directly to users.",
       "Developed a smooth, easy-to-navigate interface in Flutter and Dart so users could access critical information instantly when it matters most.",

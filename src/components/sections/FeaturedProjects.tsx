@@ -5,9 +5,6 @@ import Image from "next/image";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/components/ui/brand-icons";
 import { featuredProjects } from "@/data/projects";
-import { TrackeryMockup } from "./project-mockups/TrackeryMockup";
-import { TogetherSafeMockup } from "./project-mockups/TogetherSafeMockup";
-import { FakeNewsMockup } from "./project-mockups/FakeNewsMockup";
 import { Reveal } from "@/components/ui/Reveal";
 
 const categoryLabels: Record<string, string> = {
@@ -45,10 +42,6 @@ function ProjectVisual({
       />
     );
   }
-
-  if (slug === "trackery") return <TrackeryMockup />;
-  if (slug === "togethersafe") return <TogetherSafeMockup />;
-  if (slug === "fakenews-bert") return <FakeNewsMockup />;
 
   return (
     <div
