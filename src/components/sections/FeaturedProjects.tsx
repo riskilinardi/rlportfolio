@@ -7,6 +7,7 @@ import { GithubIcon } from "@/components/ui/brand-icons";
 import { featuredProjects } from "@/data/projects";
 import { TrackeryMockup } from "./project-mockups/TrackeryMockup";
 import { TogetherSafeMockup } from "./project-mockups/TogetherSafeMockup";
+import { FakeNewsMockup } from "./project-mockups/FakeNewsMockup";
 import { Reveal } from "@/components/ui/Reveal";
 
 const categoryLabels: Record<string, string> = {
@@ -47,6 +48,7 @@ function ProjectVisual({
 
   if (slug === "trackery") return <TrackeryMockup />;
   if (slug === "togethersafe") return <TogetherSafeMockup />;
+  if (slug === "fakenews-bert") return <FakeNewsMockup />;
 
   return (
     <div
@@ -191,7 +193,7 @@ export function FeaturedProjects() {
           <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-charcoal-muted-deep mb-3 flex items-center gap-2">
-                <span className="font-mono text-accent">02</span>
+                <span className="font-mono text-accent">03</span>
                 <span className="w-8 h-px bg-accent/40" />
                 Selected Work
               </div>
@@ -201,8 +203,8 @@ export function FeaturedProjects() {
               </h2>
             </div>
             <p className="text-charcoal-muted text-sm max-w-md">
-              From enterprise inventory systems to community safety apps — each
-              project reflects a different angle of full-stack craft.
+              From production-grade ML systems to enterprise inventory tools —
+              each project reflects a different angle of full-stack craft.
             </p>
           </div>
         </Reveal>
