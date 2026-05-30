@@ -12,7 +12,7 @@ export const projects: Project[] = [
       "Led the full development cycle of a custom desktop inventory application built to solve specific business needs. Owned everything from gathering initial requirements and designing the system architecture to handling the final database deployment.",
     type: "desktop",
     category: "personal",
-    year: 2025,
+    year: 2026,
     featured: true,
     tech: [
       "React",
@@ -59,6 +59,28 @@ export const projects: Project[] = [
       "Implemented token-level explainability using integrated gradients (more reliable than raw attention per Jain & Wallace 2019), so users can see which words influenced the prediction.",
       "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub, each component deployable independently.",
       "Production-grade concerns: per-IP rate limiting, CORS-locked endpoints, pytest with fast unit tests using a fake classifier and opt-in integration tests against the real model.",
+    ],
+  },
+  {
+    id: "howlennz",
+    slug: "howlennz",
+    title: "Howlennz Portfolio",
+    tagline: "A fast, self-managed portfolio for a Live2D artist.",
+    description:
+      "Lennz is a Live2D artist who was running his portfolio on a Carrd page that loaded slowly and gave him no real way to manage his own content. I rebuilt it as a Next.js site backed by Sanity, so he can update his gallery, commissions, and about page himself without ever touching code.",
+    type: "web",
+    category: "personal",
+    year: 2026,
+    featured: true,
+    tech: ["Next.js", "TypeScript", "Sanity CMS", "Tailwind CSS", "Netlify"],
+    links: {
+      live: "https://howlennz.netlify.app/",
+    },
+    image: "/howlennz.png",
+    highlights: [
+      "Replaced a slow Carrd page with a Next.js 14 site that loads in a fraction of the time, giving Lennz a much more professional first impression for potential commission clients.",
+      "Designed the content model in Sanity so Lennz can manage his gallery, work history, and contact details himself, no developer involvement needed for content updates.",
+      "Debugged a Cloudflare Pages and Sanity edge-runtime incompatibility mid-deployment and migrated the project to Netlify, getting the site live without compromising on stack choices.",
     ],
   },
   {
