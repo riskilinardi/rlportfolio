@@ -6,10 +6,9 @@ export const projects: Project[] = [
     image: "/trackery.png",
     slug: "trackery",
     title: "Trackery",
-    tagline:
-      "A custom desktop inventory app built for real business operations.",
+    tagline: "A desktop inventory system I built for a family business.",
     description:
-      "Led the full development cycle of a custom desktop inventory application built to solve specific business needs. Owned everything from gathering initial requirements and designing the system architecture to handling the final database deployment.",
+      "A desktop inventory app I built for a family business, replacing their pen-and-paper purchase orders and sales tracking. I designed the PostgreSQL schema around how they actually run day-to-day, then built the React frontend and Node.js backend to be something they could rely on without a developer on call.",
     type: "desktop",
     category: "personal",
     year: 2026,
@@ -27,6 +26,7 @@ export const projects: Project[] = [
       "Built a responsive frontend using React and Electron, connecting directly to a remote PostgreSQL database for real-time inventory syncing.",
       "Set up a secure, zero-trust network using Tailscale so the client could safely access the system remotely without risking data exposure.",
       "Owned the full lifecycle: requirements → architecture → implementation → deployment.",
+      "Replaced a manual pen-and-paper workflow with a proper system, giving the business reliable purchase order and sales tracking they can trust day-to-day.",
     ],
   },
   {
@@ -59,6 +59,7 @@ export const projects: Project[] = [
       "Implemented token-level explainability using integrated gradients (more reliable than raw attention per Jain & Wallace 2019), so users can see which words influenced the prediction.",
       "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub, each component deployable independently.",
       "Production-grade concerns: per-IP rate limiting, CORS-locked endpoints, pytest with fast unit tests using a fake classifier and opt-in integration tests against the real model.",
+      "Surfaced a finding most ML tutorials miss: the bottleneck wasn't model size, it was missing context. Adding speaker and source metadata lifted accuracy from 69% to 71%.",
     ],
   },
   {
@@ -91,7 +92,7 @@ export const projects: Project[] = [
     tagline:
       "Cross-platform mobile app helping communities coordinate during emergencies.",
     description:
-      "Solo-developed a cross-platform mobile application aimed at helping communities coordinate better during local emergencies. Handled the entire project independently from UI/UX design to backend services. Final Year Project for BSc (Hons) Computer Science, specialising in Machine Learning & AI.",
+      "My final year project, built solo. The idea was to help communities coordinate during local emergencies: sharing alerts, checking on each other, coordinating help. I built everything myself, from the UI to the backend, and treated it like a real product rather than just a school assignment.",
     type: "mobile",
     category: "university",
     year: 2026,
@@ -101,7 +102,7 @@ export const projects: Project[] = [
     highlights: [
       "Integrated REST APIs to push real-time emergency alerts and safety updates directly to users.",
       "Developed a smooth, easy-to-navigate interface in Flutter and Dart so users could access critical information instantly when it matters most.",
-      "Solo-shipped: designed UI/UX, built frontend, and architected backend services end-to-end.",
+      "Did all the design work and built every layer myself, end-to-end.",
     ],
   },
 ];

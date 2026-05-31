@@ -196,8 +196,9 @@ export function FeaturedProjects() {
               </h2>
             </div>
             <p className="text-charcoal-muted text-sm max-w-md">
-              From production-grade ML systems to enterprise inventory tools —
-              each project reflects a different angle of full-stack craft.
+              Each of these tackled a different problem, from inventory systems
+              to ML classifiers, and taught me something I couldn&apos;t have
+              learned from coursework alone.
             </p>
           </div>
         </Reveal>

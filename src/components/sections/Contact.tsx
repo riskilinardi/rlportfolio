@@ -62,9 +62,9 @@ export function Contact() {
           </h2>
 
           <p className="text-charcoal-muted text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-12">
-            Whether it&apos;s a full-stack application, a machine learning
-            prototype, or something unusual that hasn&apos;t been tried yet,
-            I&apos;d love to hear about it.
+            Whether it&apos;s an ML idea, a full-stack build, or just a weird
+            side project you want a second pair of eyes on, I&apos;d love to
+            hear about it.
           </p>
 
           <a

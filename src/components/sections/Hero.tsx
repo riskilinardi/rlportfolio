@@ -78,13 +78,11 @@ export function Hero() {
           className="grid md:grid-cols-[1fr_auto] gap-8 md:gap-16 mb-12 items-end"
         >
           <p className="text-lg md:text-xl text-charcoal-muted leading-relaxed max-w-xl">
-            I&apos;m a{" "}
-            <span className="text-white">Graduate Software Engineer</span>{" "}
-            specialising in Machine Learning and AI. I build production-grade{" "}
-            <span className="text-white">web</span>,{" "}
-            <span className="text-white">mobile</span>, and{" "}
-            <span className="text-white">desktop</span> applications with a
-            focus on clean architecture and scalable deployment.
+            I&apos;m a <span className="text-white">fresh CS graduate</span>{" "}
+            specialising in Machine Learning and AI. I like building things{" "}
+            <span className="text-white">end-to-end</span>, from quick
+            prototypes to <span className="text-white">polished</span>, deployed
+            products that real people use.
           </p>
 
           <div className="flex flex-col items-start md:items-end gap-1">

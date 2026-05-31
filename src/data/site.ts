@@ -5,8 +5,7 @@ export const siteConfig: SiteConfig = {
   fullName: "Riski Linardi",
   tagline: "Engineering intelligent systems from concept to production.",
   description:
-    "Graduate Software Engineer specializing in Machine Learning & AI. I build production-grade web, mobile, and desktop applications with a focus on clean architecture and scalable deployment.",
-
+    "Fresh Computer Science graduate specialising in Machine Learning and AI. I like building things end-to-end, from quick prototypes to polished, deployed products that real people use.",
   url: "https://riskilinardi.vercel.app",
 
   location: "Singapore",
@@ -35,13 +34,13 @@ export const siteConfig: SiteConfig = {
   ],
 
   stats: [
-    { value: "5+", label: "Projects shipped" },
+    { value: "6+", label: "Projects shipped" },
     { value: "6+", label: "Years coding" },
     { value: "5", label: "Awards & honors" },
   ],
 
   bio: [
-    "I’m a recent Computer Science graduate from SIM UOL, specializing in Machine Learning and AI. For me, software engineering is about understanding how every single piece of a system connects.",
+    "I’m a recent Computer Science graduate from SIM UOL, specialising in Machine Learning and AI. For me, software engineering is about understanding how every single piece of a system connects.",
     "I got my start at NEC Asia Pacific, where I helped migrate a legacy enterprise system to Azure. Later, I came back on contract to rework the SQL schemas and fix bulk-insert bottlenecks for over 100,000 records. Dealing with those concurrency issues taught me exactly why solid architecture matters just as much as the code itself. I also pushed hard to keep my academic performance consistent, earning the IRAS Book Prize (Gold in 2024, Silver in 2025).",
     "Outside of work, I build end-to-end applications. My recent projects range from Trackery (a custom React/Node.js desktop inventory system) and TogetherSafe (a cross-platform emergency app) to fine-tuning a BERT classifier for NLP. I like working across the entire stack because it lets me take an idea and ship it as a complete, polished product.",
   ],
