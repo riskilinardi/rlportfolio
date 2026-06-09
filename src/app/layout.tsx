@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { Fraunces, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { LenisProvider } from "@/components/ui/LenisProvider";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
@@ -127,6 +128,7 @@ export default function RootLayout({
         <LenisProvider />
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
