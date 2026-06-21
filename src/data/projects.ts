@@ -30,6 +30,42 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "pull-the-receipts",
+    slug: "pull-the-receipts",
+    title: "Pull The Receipts",
+    tagline:
+      "Source-grounded document Q&A that won't answer without showing its receipts.",
+    description:
+      "A retrieval-augmented generation (RAG) app that answers questions using only the documents you give it, and cites the exact source behind every claim. If the answer isn't in the documents, it says so instead of guessing. I built the whole pipeline by hand rather than reaching for a framework like LangChain, because the goal was to understand and be able to explain every stage of RAG, not to hide it behind abstractions.",
+    type: "ai",
+    category: "personal",
+    year: 2026,
+    featured: true,
+    tech: [
+      "Python",
+      "FastAPI",
+      "ChromaDB",
+      "sentence-transformers",
+      "Next.js",
+      "TypeScript",
+      "Docker",
+      "Pydantic",
+      "pytest",
+    ],
+    links: {
+      live: "https://pullthereceipts-rl.vercel.app/",
+      github: "https://github.com/riskilinardi/pull-the-receipts",
+    },
+    image: "/pullthereceipts.png",
+    highlights: [
+      "Wrote the full RAG pipeline from scratch without LangChain: document loading, sentence-aware chunking with overlap, local embeddings, vector retrieval by cosine similarity, prompt augmentation, and generation, so every step is explicit and explainable.",
+      "Grounded every answer in retrieved chunks with inline citations to source file and page, and made the model refuse when the documents don't support an answer, directly tackling the hallucination problem that makes raw LLMs untrustworthy.",
+      "Put the embedding model, vector store, and LLM provider behind interface boundaries (Python Protocols), making each swappable and letting the full test suite fake all three to run offline with no model download or API key.",
+      "Streamed answers token by token over Server-Sent Events with sources sent first, consumed in the browser with a manual SSE parser since the built-in EventSource only supports GET requests.",
+      "Containerised the FastAPI backend with Docker and deployed it to Hugging Face Spaces, with the Next.js frontend on Vercel.",
+    ],
+  },
+  {
     id: "fakenews-bert",
     image: "/FakeNewsBert.png",
     slug: "fakenews-bert",
