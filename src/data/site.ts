@@ -40,9 +40,9 @@ export const siteConfig: SiteConfig = {
   ],
 
   bio: [
-    "I’m a recent Computer Science graduate from SIM UOL, specialising in Machine Learning and AI. For me, software engineering is about understanding how every single piece of a system connects.",
-    "I got my start at NEC Asia Pacific, where I helped migrate a legacy enterprise system to Azure. Later, I came back on contract to rework the SQL schemas and fix bulk-insert bottlenecks for over 100,000 records. Dealing with those concurrency issues taught me exactly why solid architecture matters just as much as the code itself. I also pushed hard to keep my academic performance consistent, earning the IRAS Book Prize (Gold in 2024, Silver in 2025).",
-    "Outside of work, I build end-to-end applications. My recent projects range from Trackery (a custom React/Node.js desktop inventory system) and TogetherSafe (a cross-platform emergency app) to fine-tuning a BERT classifier for NLP. I like working across the entire stack because it lets me take an idea and ship it as a complete, polished product.",
+    "I'm a recent Computer Science graduate from SIM UOL, specialising in Machine Learning and AI. I like working across the whole stack, from the database up to the interface, and seeing how the parts fit together.",
+    "I got my start at NEC Asia Pacific, where I helped migrate a legacy enterprise system to Azure. Later, I came back on contract to rework the SQL schemas and fix bulk-insert bottlenecks for over 100,000 records. Tracking down why those large uploads were so slow, and fixing it at the query and schema level, taught me that how you structure the data matters as much as the code that uses it. I also pushed hard to keep my academic performance consistent, earning the IRAS Book Prize (Gold in 2024, Silver in 2025).",
+    "Outside of work, I build end-to-end applications. My recent projects range from Trackery (a custom React/Node.js desktop inventory system) and TogetherSafe (a cross-platform emergency app) to a fine-tuned BERT classifier and a RAG app I built from scratch. I like working across the entire stack because it lets me take an idea and ship it as a complete, polished product.",
   ],
 
   photo: "/me.png",

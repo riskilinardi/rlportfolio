@@ -95,7 +95,7 @@ export const projects: Project[] = [
       "Implemented token-level explainability using integrated gradients (more reliable than raw attention per Jain & Wallace 2019), so users can see which words influenced the prediction.",
       "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub, each component deployable independently.",
       "Production-grade concerns: per-IP rate limiting, CORS-locked endpoints, pytest with fast unit tests using a fake classifier and opt-in integration tests against the real model.",
-      "Surfaced a finding most ML tutorials miss: the bottleneck wasn't model size, it was missing context. Adding speaker and source metadata lifted accuracy from 69% to 71%.",
+      "Surfaced a finding most ML tutorials miss: the bottleneck wasn't model size, it was missing context. Adding speaker and source metadata lifted accuracy from 68% to 71%.",
     ],
   },
   {
