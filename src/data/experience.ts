@@ -3,12 +3,12 @@ import type { ExperienceItem } from "@/types";
 export const experience: ExperienceItem[] = [
   {
     id: "sim-uol-degree",
-    role: "BSc (Hons) Computer Science — Machine Learning & AI",
+    role: "BSc (Hons) Computer Science, First Class Honours — Machine Learning & AI",
     company: "Singapore Institute of Management (UOL)",
     location: "Singapore",
     period: "Apr 2023 — Apr 2026",
     description:
-      "Focused my studies on Machine Learning and AI while building full-stack and mobile projects on the side, like my Flutter capstone, TogetherSafe. I worked hard to keep my grades up alongside my coding projects and was awarded the IRAS Book Prize twice (Gold in 2024, Silver in 2025).",
+      "Graduated with First Class Honours, focusing my studies on Machine Learning and AI while building full-stack and mobile projects on the side, like my Flutter capstone, TogetherSafe. I was also awarded the IRAS Book Prize twice (Gold in 2024, Silver in 2025) for academic performance.",
     type: "education",
   },
   {
