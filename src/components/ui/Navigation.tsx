@@ -70,7 +70,7 @@ export function Navigation() {
 
         <div className="flex items-center gap-2">
           <a
-            href="/resume.pdf"
+            href="/Riski_Linardi_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden sm:flex group relative px-4 py-2 rounded-full text-xs border border-white/10 hover:border-accent/50 text-charcoal-muted hover:text-white items-center gap-1.5 transition-colors"

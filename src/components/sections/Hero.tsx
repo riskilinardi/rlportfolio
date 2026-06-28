@@ -122,7 +122,7 @@ export function Hero() {
           </a>
 
           <a
-            href="/resume.pdf"
+            href="/Riski_Linardi_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="group px-6 py-3.5 rounded-full border border-accent/30 bg-accent/5 backdrop-blur text-sm text-accent-light hover:border-accent/60 hover:bg-accent/15 hover:text-white transition-all"

@@ -8,7 +8,7 @@ export const projects: Project[] = [
     title: "Trackery",
     tagline: "A desktop inventory system I built for a family business.",
     description:
-      "A desktop inventory app I built for a family business, replacing their pen-and-paper purchase orders and sales tracking. I designed the PostgreSQL schema around how they actually run day-to-day, then built the React frontend and Node.js backend to be something they could rely on without a developer on call.",
+      "A desktop inventory app I built for a family business, replacing their pen-and-paper purchase orders and sales tracking. I designed the PostgreSQL schema around how they actually work day-to-day, then built the React and Node.js app to be something they could rely on without a developer on call.",
     type: "desktop",
     category: "personal",
     year: 2026,
@@ -23,10 +23,42 @@ export const projects: Project[] = [
     ],
     links: {},
     highlights: [
-      "Built a responsive frontend using React and Electron, connecting directly to a remote PostgreSQL database for real-time inventory syncing.",
-      "Set up a secure, zero-trust network using Tailscale so the client could safely access the system remotely without risking data exposure.",
-      "Owned the full lifecycle: requirements → architecture → implementation → deployment.",
-      "Replaced a manual pen-and-paper workflow with a proper system, giving the business reliable purchase order and sales tracking they can trust day-to-day.",
+      "Built the frontend with React and Electron, wired to a remote PostgreSQL database so inventory stays in sync in real time.",
+      "Set up a zero-trust network with Tailscale so the business could access the system from anywhere without exposing the database to the public internet.",
+      "Replaced a manual pen-and-paper workflow with a proper system they can trust for daily purchase orders and sales tracking.",
+    ],
+  },
+  {
+    id: "let-it-cook",
+    slug: "let-it-cook",
+    title: "Let It Cook",
+    tagline:
+      "An AI research agent that plans its approach, picks the right tool for each step, and checks its own work, with every step shown.",
+    description:
+      "My follow-up to Pull The Receipts, moving from retrieval into agents. Instead of answering in one pass, it plans an approach, picks between web search, document retrieval, and a calculator, then reviews its own draft before answering. I built the reasoning loop by hand in LangGraph so every step is visible, and the interface streams it live as the agent plans, picks tools, and corrects itself.",
+    type: "ai",
+    category: "personal",
+    year: 2026,
+    featured: true,
+    tech: [
+      "LangGraph",
+      "LangChain",
+      "Gemini",
+      "ChromaDB",
+      "FastAPI",
+      "Next.js",
+      "Docker",
+    ],
+    links: {
+      live: "https://letitcook-rl.vercel.app/",
+      github: "https://github.com/riskilinardi/let-it-cook",
+    },
+    image: "/letitcook.png",
+    highlights: [
+      "Built the agent in LangGraph around the four core agentic patterns: planning, tool use, memory, and reflection, all as a custom stateful graph.",
+      "Gave it three tools and let it choose between them with function calling: web search, document retrieval over local embeddings, and a calculator parsed from an AST so it can't run arbitrary code.",
+      "Added a self-correction loop where the agent grades its own draft and revises when it falls short, with hard caps so it always terminates.",
+      "Streamed the agent's reasoning live to a Next.js frontend, with rate limiting to keep API costs in check and LangSmith tracing for observability.",
     ],
   },
   {
@@ -36,7 +68,7 @@ export const projects: Project[] = [
     tagline:
       "Source-grounded document Q&A that won't answer without showing its receipts.",
     description:
-      "A retrieval-augmented generation (RAG) app that answers questions using only the documents you give it, and cites the exact source behind every claim. If the answer isn't in the documents, it says so instead of guessing. I built the whole pipeline by hand rather than reaching for a framework like LangChain, because the goal was to understand and be able to explain every stage of RAG, not to hide it behind abstractions.",
+      "A retrieval-augmented generation app that answers only from the documents you give it, citing the exact source behind every claim, and saying so when the answer isn't there rather than guessing. I built the whole RAG pipeline by hand instead of reaching for LangChain, because I wanted to understand and explain every stage rather than hide it behind a framework.",
     type: "ai",
     category: "personal",
     year: 2026,
@@ -58,11 +90,10 @@ export const projects: Project[] = [
     },
     image: "/pullthereceipts.png",
     highlights: [
-      "Wrote the full RAG pipeline from scratch without LangChain: document loading, sentence-aware chunking with overlap, local embeddings, vector retrieval by cosine similarity, prompt augmentation, and generation, so every step is explicit and explainable.",
-      "Grounded every answer in retrieved chunks with inline citations to source file and page, and made the model refuse when the documents don't support an answer, directly tackling the hallucination problem that makes raw LLMs untrustworthy.",
-      "Put the embedding model, vector store, and LLM provider behind interface boundaries (Python Protocols), making each swappable and letting the full test suite fake all three to run offline with no model download or API key.",
-      "Streamed answers token by token over Server-Sent Events with sources sent first, consumed in the browser with a manual SSE parser since the built-in EventSource only supports GET requests.",
-      "Containerised the FastAPI backend with Docker and deployed it to Hugging Face Spaces, with the Next.js frontend on Vercel.",
+      "Wrote the full RAG pipeline from scratch: document loading, sentence-aware chunking, local embeddings, vector retrieval, prompt augmentation, and generation, with every step explicit.",
+      "Grounded every answer in retrieved chunks with inline citations to file and page, and made the model refuse when the documents don't back up an answer.",
+      "Put the embedding model, vector store, and LLM provider behind clean interfaces, so each is swappable and the test suite can fake all three to run offline.",
+      "Streamed answers token by token over Server-Sent Events with sources sent first, then containerised the backend with Docker for deployment.",
     ],
   },
   {
@@ -72,7 +103,7 @@ export const projects: Project[] = [
     title: "Fake News Classifier",
     tagline: "Fine-tuned BERT with explainability, deployed end-to-end.",
     description:
-      "A full-stack fake-news classifier built around a fine-tuned BERT model. Users paste a statement and get back a verdict, confidence score, per-class probabilities, and the individual tokens that pushed the model toward its decision. Compared five model architectures from Naive Bayes to BERT+metadata to identify where the real bottleneck lies.",
+      "A full-stack fake-news classifier built on a fine-tuned BERT model. Paste a statement and it returns a verdict, confidence, and the exact tokens that drove the decision. I compared five model architectures along the way, from Naive Bayes to BERT with metadata, to find where the real accuracy ceiling sits.",
     type: "ai",
     category: "personal",
     year: 2026,
@@ -91,11 +122,10 @@ export const projects: Project[] = [
       github: "https://github.com/riskilinardi/fake-news-bert",
     },
     highlights: [
-      "Fine-tuned bert-base-uncased on the PolitiFact dataset (~21,000 statements) and compared 5 model architectures, finding the accuracy ceiling lies with the task, not the model capacity.",
-      "Implemented token-level explainability using integrated gradients (more reliable than raw attention per Jain & Wallace 2019), so users can see which words influenced the prediction.",
-      "Built a true microservice split: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model hosted on HF Hub, each component deployable independently.",
-      "Production-grade concerns: per-IP rate limiting, CORS-locked endpoints, pytest with fast unit tests using a fake classifier and opt-in integration tests against the real model.",
-      "Surfaced a finding most ML tutorials miss: the bottleneck wasn't model size, it was missing context. Adding speaker and source metadata lifted accuracy from 68% to 71%.",
+      "Fine-tuned bert-base-uncased on the PolitiFact dataset and compared five architectures, finding the accuracy ceiling sits with the task itself, not the model size.",
+      "Added token-level explanations with integrated gradients (a more reliable signal than raw attention), so you can see which words pushed the prediction.",
+      "Split it into a real microservice setup: FastAPI backend on Hugging Face Spaces, Next.js frontend on Vercel, model on HF Hub, each deployable on its own.",
+      "Surfaced a finding most tutorials miss: the bottleneck was missing context, not capacity. Adding speaker and source metadata lifted accuracy from 69% to 71%.",
     ],
   },
   {
@@ -104,7 +134,7 @@ export const projects: Project[] = [
     title: "Howlennz Portfolio",
     tagline: "A fast, self-managed portfolio for a Live2D artist.",
     description:
-      "Lennz is a Live2D artist who was running his portfolio on a Carrd page that loaded slowly and gave him no real way to manage his own content. I rebuilt it as a Next.js site backed by Sanity, so he can update his gallery, commissions, and about page himself without ever touching code.",
+      "Lennz is a Live2D artist who was stuck on a slow Carrd page with no way to manage his own content. I rebuilt it as a Next.js site backed by Sanity, so he can update his gallery, commissions, and about page himself without touching code.",
     type: "web",
     category: "personal",
     year: 2026,
@@ -115,9 +145,9 @@ export const projects: Project[] = [
     },
     image: "/howlennz.png",
     highlights: [
-      "Replaced a slow Carrd page with a Next.js 14 site that loads in a fraction of the time, giving Lennz a much more professional first impression for potential commission clients.",
-      "Designed the content model in Sanity so Lennz can manage his gallery, work history, and contact details himself, no developer involvement needed for content updates.",
-      "Debugged a Cloudflare Pages and Sanity edge-runtime incompatibility mid-deployment and migrated the project to Netlify, getting the site live without compromising on stack choices.",
+      "Rebuilt a slow Carrd page as a Next.js 14 site that loads far faster, giving Lennz a more professional first impression for commission clients.",
+      "Designed the Sanity content model so he can manage his gallery, work history, and contact details himself, with no developer needed for updates.",
+      "Hit a Cloudflare Pages and Sanity edge-runtime incompatibility mid-deployment, debugged it, and migrated to Netlify without compromising the stack.",
     ],
   },
   {
@@ -128,7 +158,7 @@ export const projects: Project[] = [
     tagline:
       "Cross-platform mobile app helping communities coordinate during emergencies.",
     description:
-      "My final year project, built solo. The idea was to help communities coordinate during local emergencies: sharing alerts, checking on each other, coordinating help. I built everything myself, from the UI to the backend, and treated it like a real product rather than just a school assignment.",
+      "My final year project, built solo: a mobile app to help communities coordinate during local emergencies, with shared alerts and check-ins. I built every layer myself, from the UI to the backend, and treated it like a real product rather than a school assignment.",
     type: "mobile",
     category: "university",
     year: 2026,
@@ -136,9 +166,9 @@ export const projects: Project[] = [
     tech: ["Flutter", "Dart", "REST APIs"],
     links: { github: "https://github.com/riskilinardi/TogetherSafe" },
     highlights: [
-      "Integrated REST APIs to push real-time emergency alerts and safety updates directly to users.",
-      "Developed a smooth, easy-to-navigate interface in Flutter and Dart so users could access critical information instantly when it matters most.",
-      "Did all the design work and built every layer myself, end-to-end.",
+      "Wired up REST APIs to push real-time emergency alerts and safety updates straight to users.",
+      "Built the interface in Flutter and Dart, focusing on clarity so people can find critical information instantly during stressful moments.",
+      "Owned the whole stack myself: UI, frontend, and backend, end to end.",
     ],
   },
 ];
