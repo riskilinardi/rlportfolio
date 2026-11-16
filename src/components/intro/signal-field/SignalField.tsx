@@ -80,6 +80,17 @@ interface Field {
 
 const toUnit = (colour: Rgb) => colour.map((c) => c / 255);
 
+/**
+ * WebKit (every iOS browser, and Safari on macOS) used to hang for seconds
+ * compiling the shader, so it stays on the CSS grid until the unrolled shader
+ * is confirmed fast there. `?gl` turns WebGL on and `?gl=0` off, in any browser.
+ */
+function webglAllowed() {
+  const flag = new URLSearchParams(window.location.search).get("gl");
+  if (flag !== null) return flag !== "0";
+  return navigator.vendor !== "Apple Computer, Inc.";
+}
+
 function compile(gl: WebGLRenderingContext, type: number, source: string) {
   const shader = gl.createShader(type);
   if (!shader) return null;
@@ -222,6 +233,7 @@ export function SignalField({ ref }: { ref: Ref<SignalFieldHandle> }) {
   }), []);
 
   useEffect(() => {
+    if (!webglAllowed()) return;
     const canvas = canvasRef.current;
     const gl = canvas?.getContext("webgl", {
       alpha: true,

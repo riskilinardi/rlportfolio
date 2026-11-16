@@ -37,6 +37,7 @@ import {
 
 const READY_PAUSE = 250;
 const MAX_WAIT = 2500;
+const STALL_MS = 250;
 
 const centreOf = (rect: DOMRect): [number, number] => [
   rect.left + rect.width / 2,
@@ -163,11 +164,15 @@ export function IntroOverlay() {
     let started = false;
     let start = 0;
     let frame = 0;
+    let lastFrameAt = 0;
     let handedOff = false;
     let skipped = false;
     let last = progressAt(0);
 
     const tick = (now: number) => {
+      // A stall (a busy device, a hidden tab) pauses the intro instead of skipping ahead.
+      if (lastFrameAt && now - lastFrameAt > STALL_MS) start += now - lastFrameAt - 1000 / 60;
+      lastFrameAt = now;
       const t = now - start;
       const next = progressAt(t);
       if (progressKey(next) !== progressKey(last)) {

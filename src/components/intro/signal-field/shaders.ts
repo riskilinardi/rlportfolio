@@ -10,11 +10,19 @@ import {
   SEARCH_TAU,
 } from "./config";
 
+/** `call(0) call(1) …`: each array slot read with a constant index, never in a loop. */
+const unrolled = (count: number, call: (i: number) => string) =>
+  Array.from({ length: count }, (_, i) => `    ${call(i)}`).join("\n");
+
 /*
  * One vertex shader draws everything as points. aKind 0 is a grid dot, moved
  * by ripples, lit by hits and streams. Anything else is an evidence particle:
  * kind = 1, +1 if its answer point is a highlighted word, +2 if its headline
  * point is. Times are in seconds; -1 means "not yet".
+ *
+ * The per-slot work is unrolled with constant indices on purpose: indexing
+ * uniform arrays with a loop counter makes WebKit's Metal backend take seconds
+ * to compile (WebKit bug 234926), which froze the page on iPhones and Macs.
  */
 export const VERTEX_SHADER = `
 precision highp float;
@@ -70,6 +78,87 @@ vec3 sourceColour(float s) {
   return uSourceColours[2];
 }
 
+void ripple(vec4 r, inout vec2 pos, inout vec3 tintSum, inout float glow) {
+  float t = uTime - r.z;
+  if (r.z < 0.0 || t < 0.0) return;
+  float kind = r.w;
+  float R = ${SEARCH_R}.0;
+  float tau = ${SEARCH_TAU};
+  float life = 1.9;
+  float strength = 1.0;
+  vec3 front = vec3(0.20, 0.45, 1.0);
+  vec3 peak = vec3(0.50, 0.84, 1.0);
+  vec3 tail = vec3(0.55, 0.40, 1.0);
+  if (kind > 0.5 && kind < 1.5) {          // impact
+    R = 150.0; tau = 0.16; life = 0.7; strength = 0.85;
+  } else if (kind > 1.5 && kind < 2.5) {   // check
+    R = 2000.0; tau = 1.25; life = 2.2; strength = 1.25;
+    front = vec3(0.05, 0.65, 0.45); peak = vec3(0.45, 1.0, 0.75); tail = vec3(0.10, 0.80, 0.55);
+  } else if (kind > 2.5) {                 // lock-in
+    R = 1000.0; tau = 0.55; life = 1.3; strength = 0.9;
+    front = vec3(0.45, 0.70, 1.0); peak = vec3(0.88, 0.96, 1.0); tail = vec3(0.62, 0.62, 1.0);
+  }
+  if (t > life) return;
+  vec2 d = aHome - r.xy;
+  float dist = length(d);
+  float x = dist - R * (1.0 - exp(-t / tau));
+  float amp = strength * pow(1.0 - t / life, 1.6);
+  float crest = exp(-x * x / 900.0);
+  // Two fainter echoes trail behind the crest.
+  float echo = x < 0.0 ? exp(x / 120.0) * pow(0.5 + 0.5 * cos(6.2832 * x / 70.0), 4.0) * 0.6 : 0.0;
+  float e = amp * (crest + echo);
+  vec2 dir = dist > 0.001 ? d / dist : vec2(0.0);
+  pos += dir * amp * (crest * 9.0 + echo * 3.0);
+  vec3 tint = x > 0.0
+    ? mix(peak, front, clamp(x / 30.0, 0.0, 1.0))
+    : mix(peak, tail, clamp(-x / 40.0, 0.0, 1.0));
+  tintSum += tint * e;
+  glow += e;
+}
+
+void hit(vec4 h, inout vec3 tintSum, inout float glow) {
+  float t = uTime - h.z;
+  if (h.z < 0.0 || t < 0.0 || t > 1.4) return;
+  if (distance(aHome, h.xy) < 2.0) {
+    float f = exp(-t / 0.45) * 2.4;
+    tintSum += vec3(1.0, 0.97, 0.9) * f;
+    glow += f;
+  }
+}
+
+// Light running along two grid segments: from -> corner -> to.
+void stream(vec4 A, vec4 B, vec3 light, inout vec3 tintSum, inout float glow) {
+  float t = uTime - B.z;
+  if (B.z < 0.0 || t < 0.0 || t > B.w + 0.5) return;
+  vec2 S = A.xy;
+  vec2 C = A.zw;
+  vec2 sc = C - S;
+  vec2 ce = B.xy - C;
+  float len1 = length(sc);
+  float len2 = length(ce);
+  float h1 = clamp(dot(aHome - S, sc) / max(dot(sc, sc), 1.0), 0.0, 1.0);
+  float h2 = clamp(dot(aHome - C, ce) / max(dot(ce, ce), 1.0), 0.0, 1.0);
+  float d1 = length(aHome - (S + sc * h1));
+  float d2 = length(aHome - (C + ce * h2));
+  float along = d1 <= d2 ? h1 * len1 : len1 + h2 * len2;
+  float off = min(d1, d2);
+  float head = (len1 + len2) * easeInOut(clamp(t / B.w, 0.0, 1.0));
+  float behind = head - along;
+  float trail = behind >= 0.0 ? exp(-behind / 80.0) : 0.0;
+  float spark = exp(-behind * behind / 260.0) * 1.5;
+  float fade = 1.0 - clamp((t - B.w) / 0.5, 0.0, 1.0);
+  float e = exp(-off * off / 18.0) * (trail + spark) * fade * 1.3;
+  tintSum += light * e;
+  glow += e;
+}
+
+void hole(vec4 h, inout float mask, inout float glow) {
+  if (h.z > h.x && aHome.x > h.x && aHome.x < h.z && aHome.y > h.y && aHome.y < h.w) {
+    mask = 0.0;
+    glow = 0.0;
+  }
+}
+
 void main() {
   vec2 pos = aHome;
   vec3 colour = vec3(1.0);
@@ -84,91 +173,10 @@ void main() {
     vec3 tintSum = vec3(0.0);
     float glow = 0.0;
 
-    for (int i = 0; i < ${MAX_RIPPLES}; i++) {
-      vec4 r = uRipples[i];
-      float t = uTime - r.z;
-      if (r.z < 0.0 || t < 0.0) continue;
-      float kind = r.w;
-      float R = ${SEARCH_R}.0;
-      float tau = ${SEARCH_TAU};
-      float life = 1.9;
-      float strength = 1.0;
-      vec3 front = vec3(0.20, 0.45, 1.0);
-      vec3 peak = vec3(0.50, 0.84, 1.0);
-      vec3 tail = vec3(0.55, 0.40, 1.0);
-      if (kind > 0.5 && kind < 1.5) {          // impact
-        R = 150.0; tau = 0.16; life = 0.7; strength = 0.85;
-      } else if (kind > 1.5 && kind < 2.5) {   // check
-        R = 2000.0; tau = 1.25; life = 2.2; strength = 1.25;
-        front = vec3(0.05, 0.65, 0.45); peak = vec3(0.45, 1.0, 0.75); tail = vec3(0.10, 0.80, 0.55);
-      } else if (kind > 2.5) {                 // lock-in
-        R = 1000.0; tau = 0.55; life = 1.3; strength = 0.9;
-        front = vec3(0.45, 0.70, 1.0); peak = vec3(0.88, 0.96, 1.0); tail = vec3(0.62, 0.62, 1.0);
-      }
-      if (t > life) continue;
-      vec2 d = aHome - r.xy;
-      float dist = length(d);
-      float x = dist - R * (1.0 - exp(-t / tau));
-      float amp = strength * pow(1.0 - t / life, 1.6);
-      float crest = exp(-x * x / 900.0);
-      // Two fainter echoes trail behind the crest.
-      float echo = x < 0.0 ? exp(x / 120.0) * pow(0.5 + 0.5 * cos(6.2832 * x / 70.0), 4.0) * 0.6 : 0.0;
-      float e = amp * (crest + echo);
-      vec2 dir = dist > 0.001 ? d / dist : vec2(0.0);
-      pos += dir * amp * (crest * 9.0 + echo * 3.0);
-      vec3 tint = x > 0.0
-        ? mix(peak, front, clamp(x / 30.0, 0.0, 1.0))
-        : mix(peak, tail, clamp(-x / 40.0, 0.0, 1.0));
-      tintSum += tint * e;
-      glow += e;
-    }
-
-    for (int i = 0; i < ${MAX_HITS}; i++) {
-      vec4 h = uHits[i];
-      float t = uTime - h.z;
-      if (h.z < 0.0 || t < 0.0 || t > 1.4) continue;
-      if (distance(aHome, h.xy) < 2.0) {
-        float f = exp(-t / 0.45) * 2.4;
-        tintSum += vec3(1.0, 0.97, 0.9) * f;
-        glow += f;
-      }
-    }
-
-    // Streams run along two grid segments: from -> corner -> to.
-    for (int i = 0; i < ${MAX_STREAMS}; i++) {
-      vec4 A = uStreamA[i];
-      vec4 B = uStreamB[i];
-      float t = uTime - B.z;
-      if (B.z < 0.0 || t < 0.0 || t > B.w + 0.5) continue;
-      vec2 S = A.xy;
-      vec2 C = A.zw;
-      vec2 sc = C - S;
-      vec2 ce = B.xy - C;
-      float len1 = length(sc);
-      float len2 = length(ce);
-      float h1 = clamp(dot(aHome - S, sc) / max(dot(sc, sc), 1.0), 0.0, 1.0);
-      float h2 = clamp(dot(aHome - C, ce) / max(dot(ce, ce), 1.0), 0.0, 1.0);
-      float d1 = length(aHome - (S + sc * h1));
-      float d2 = length(aHome - (C + ce * h2));
-      float along = d1 <= d2 ? h1 * len1 : len1 + h2 * len2;
-      float off = min(d1, d2);
-      float head = (len1 + len2) * easeInOut(clamp(t / B.w, 0.0, 1.0));
-      float behind = head - along;
-      float trail = behind >= 0.0 ? exp(-behind / 80.0) : 0.0;
-      float spark = exp(-behind * behind / 260.0) * 1.5;
-      float fade = 1.0 - clamp((t - B.w) / 0.5, 0.0, 1.0);
-      float e = exp(-off * off / 18.0) * (trail + spark) * fade * 1.3;
-      tintSum += uStreamColour[i] * e;
-      glow += e;
-    }
-
-    for (int i = 0; i < ${MAX_HOLES}; i++) {
-      vec4 h = uHoles[i];
-      if (h.z > h.x && aHome.x > h.x && aHome.x < h.z && aHome.y > h.y && aHome.y < h.w) {
-        mask = 0.0;
-        glow = 0.0;
-      }
-    }
+${unrolled(MAX_RIPPLES, (i) => `ripple(uRipples[${i}], pos, tintSum, glow);`)}
+${unrolled(MAX_HITS, (i) => `hit(uHits[${i}], tintSum, glow);`)}
+${unrolled(MAX_STREAMS, (i) => `stream(uStreamA[${i}], uStreamB[${i}], uStreamColour[${i}], tintSum, glow);`)}
+${unrolled(MAX_HOLES, (i) => `hole(uHoles[${i}], mask, glow);`)}
 
     float lit = clamp(glow, 0.0, 1.5);
     alpha = 0.075 * mask + clamp(lit, 0.0, 1.0) * mix(0.35, 1.0, mask);
