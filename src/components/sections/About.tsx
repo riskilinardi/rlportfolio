@@ -12,7 +12,14 @@ export function About() {
         <div className="grid md:grid-cols-3 gap-10 md:gap-16 items-start">
           <Reveal animation="fadeLeft" className="md:col-span-1">
             <div className="relative group">
-              <div className="absolute -inset-2 rounded-2xl bg-accent/20 blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-500" />
+              <div
+                aria-hidden="true"
+                className="absolute -inset-10 opacity-40 group-hover:opacity-70 transition-opacity duration-500"
+                style={{
+                  background:
+                    "radial-gradient(ellipse closest-side, rgba(88, 166, 255, 0.35) 55%, rgba(88, 166, 255, 0.12) 80%, transparent 100%)",
+                }}
+              />
 
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-white/10 bg-charcoal-surface">
                 <Image

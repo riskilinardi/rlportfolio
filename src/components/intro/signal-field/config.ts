@@ -9,13 +9,10 @@ export const HALF = GRID / 2;
 /** The page's own background grid (.grid-overlay), which the dots settle onto. */
 export const PAGE_GRID = 80;
 
-// Sizes of the shader's uniform arrays: exactly what the intro uses, so no
-// slot is reused while its effect is still visible. Each search uses 4
-// ripples (wave, two hits, landing), 2 hits and 2 streams; then the check
-// and the lock-in add one ripple each.
-export const MAX_RIPPLES = 14;
-export const MAX_HITS = 6;
-export const MAX_STREAMS = 6;
+// Sizes of the shader's uniform arrays.
+export const MAX_RIPPLES = 16;
+export const MAX_HITS = 8;
+export const MAX_STREAMS = 10;
 export const MAX_HOLES = 4;
 export const MAX_SOURCES = 3;
 

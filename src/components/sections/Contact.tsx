@@ -1,4 +1,5 @@
 import { ArrowUpRight, Mail, MapPin } from "lucide-react";
+import { softGlow } from "@/components/effects/AuroraBackground";
 import { SOCIAL_ICONS } from "@/components/ui/brand-icons";
 import { CopyEmailButton } from "@/components/ui/CopyEmailButton";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -13,10 +14,8 @@ export function Contact() {
     >
       <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[120px] opacity-20"
-          style={{
-            background: "radial-gradient(circle, #58a6ff 0%, transparent 70%)",
-          }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1040px] h-[1040px] opacity-20"
+          style={{ background: softGlow("88, 166, 255") }}
         />
       </div>
 
