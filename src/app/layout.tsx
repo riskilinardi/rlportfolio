@@ -3,7 +3,6 @@ import { GeistSans } from "geist/font/sans";
 import { Fraunces, JetBrains_Mono } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
-import { LenisProvider } from "@/components/ui/LenisProvider";
 import { siteConfig } from "@/data/site";
 import "./globals.css";
 
@@ -15,19 +14,24 @@ const fraunces = Fraunces({
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
+
+const pageTitle = `${siteConfig.name} | Software Engineer`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.fullName} — Software Engineer`,
-    template: `%s | ${siteConfig.fullName}`,
+    default: pageTitle,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  // The site is also reachable at riskilinardi.vercel.app; this tells search
+  // engines that riskilinardi.dev is the address to index.
+  alternates: { canonical: "/" },
   keywords: [
-    siteConfig.fullName,
+    siteConfig.name,
     "Software Engineer",
     "Machine Learning",
     "Full-Stack Developer",
@@ -38,19 +42,19 @@ export const metadata: Metadata = {
     "Singapore Developer",
     "Portfolio",
   ],
-  authors: [{ name: siteConfig.fullName, url: siteConfig.url }],
-  creator: siteConfig.fullName,
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
   openGraph: {
     type: "website",
-    locale: "en_US",
-    title: `${siteConfig.fullName} — ${siteConfig.tagline}`,
+    locale: "en_GB",
+    title: pageTitle,
     description: siteConfig.description,
-    siteName: siteConfig.fullName,
+    siteName: siteConfig.name,
     url: siteConfig.url,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.fullName} — ${siteConfig.tagline}`,
+    title: pageTitle,
     description: siteConfig.description,
   },
   robots: {
@@ -69,7 +73,7 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: siteConfig.fullName,
+  name: siteConfig.name,
   url: siteConfig.url,
   jobTitle: "Software Engineer",
   email: siteConfig.email,
@@ -80,7 +84,7 @@ const jsonLd = {
   alumniOf: [
     {
       "@type": "EducationalOrganization",
-      name: "Singapore Institute of Management (UOL)",
+      name: siteConfig.school,
     },
     {
       "@type": "EducationalOrganization",
@@ -109,14 +113,17 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="en-GB"
       suppressHydrationWarning
       className={`no-js ${GeistSans.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
     >
       <head>
+        {/* Runs before first paint: marks JS as available, and decides whether
+            the intro plays: once per tab, ?intro forces a replay, and reduced
+            motion always skips it. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.remove('no-js');",
+            __html: `(function(){var d=document.documentElement;d.classList.remove('no-js');try{var force=/[?&]intro(=|&|$)/.test(location.search);var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduce||(!force&&sessionStorage.getItem('intro-seen')))d.setAttribute('data-intro','skip');}catch(e){d.setAttribute('data-intro','skip');}})();`,
           }}
         />
         <script
@@ -124,8 +131,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="bg-charcoal-bg text-charcoal-text font-sans antialiased selection:bg-accent/30 selection:text-white">
-        <LenisProvider />
+      {/* Browser extensions such as Grammarly add attributes to <body> before React loads. */}
+      <body
+        suppressHydrationWarning
+        className="bg-charcoal-bg text-charcoal-text font-sans antialiased selection:bg-accent/30 selection:text-white">
         {children}
         <SpeedInsights />
         <Analytics />

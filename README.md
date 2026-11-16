@@ -1,30 +1,52 @@
-# Portfolio
+# riskilinardi.dev
 
-My personal website, live at [riskilinardi.vercel.app](https://riskilinardi.vercel.app).
+My personal website, live at [riskilinardi.dev](https://riskilinardi.dev).
 
-I'm a Software Engineer based in Singapore, working mostly on ML, AI, and full-stack development. I built this site to keep track of what I'm working on and have a single place to point people to my projects.
+I'm a software engineer in Singapore who builds full-stack and AI apps. This site is where I point people to my work.
+
+## What's in it
+
+- **An intro that answers "Who is Riski Linardi?" as an agent trace.** The agent searches, sources land as cards, and the answer forms out of particles before it becomes the page's headline. The dot grid behind it is a single WebGL draw call. It plays once per tab, never with reduced motion, and `/?intro` replays it.
+- **Ask my portfolio** (`Ctrl K` / `⌘K`): a command palette that answers a few common questions from what's on the page, jumps to sections and doubles as the mobile menu.
+- **Six projects**, filterable by stack, each linking to a live demo or the source where there is one.
 
 ## Stack
 
-- **Next.js 16** (App Router) with TypeScript
-- **Tailwind CSS v4** for styling
-- **Framer Motion** for the animations
-- **Lenis** for smooth scrolling
-- **Lucide React** for icons
-- Hosted on **Vercel**
+- [Next.js 16](https://nextjs.org) (App Router) and React 19, in TypeScript
+- Tailwind CSS v4
+- WebGL for the intro's particle field, the Web Animations API for its handoff, and Framer Motion for UI transitions
+- Hosted on Vercel
 
-## Featured Projects
+## Running it locally
 
-The site walks through a few of the projects I've shipped:
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run lint
+npm run typecheck
+```
 
-- **Trackery** — A desktop inventory app I built end-to-end for a real client. Electron + React + Postgres, with Tailscale handling secure remote access.
-- **Fake News Classifier** — A fine-tuned BERT model wrapped in a FastAPI backend and Next.js frontend. The interesting part is token-level explainability using integrated gradients, so you can see which words pushed the model toward its prediction. Also includes a 5-model comparison study.
-- **TogetherSafe** — A cross-platform emergency coordination app built with Flutter for my final year project. Real-time alerts, location pings, and community check-ins.
+## Where things live
+
+```
+src/
+  app/                 layout, page, 404, Open Graph image, robots, sitemap
+  components/
+    intro/             the intro: timeline, handoff, Source cards
+      signal-field/    the WebGL particle field and its shaders
+    sections/          Hero, About, Work, Experience, Contact
+    ask/               Ask my portfolio
+    trace/             the agent-trace UI shared by the intro, Ask and the 404 page
+    ui/                navigation, footer and small shared pieces
+  data/                all of the site's content: projects, experience, intro, Ask answers
+  lib/                 small client stores and helpers
+```
+
+Content lives in `src/data`, so updating a project or a line of copy doesn't mean touching components.
 
 ## License
 
-The code is open source — feel free to look around or take ideas. Just please don't copy it wholesale and pass it off as your own portfolio.
+The code is open source, so feel free to look around or take ideas. Just please don't copy it wholesale and pass it off as your own portfolio.
 
----
-
-If you spot something broken or have feedback, my contact info is on the site.
+If you spot something broken or have feedback, my contact details are on the site.

@@ -2,26 +2,13 @@ import { Briefcase, GraduationCap, Code2 } from "lucide-react";
 import { experience } from "@/data/experience";
 import type { ExperienceType } from "@/types";
 import { Reveal } from "@/components/ui/Reveal";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { NoWrapParts } from "@/components/ui/NoWrapParts";
 
-const typeMeta: Record<
-  ExperienceType,
-  { icon: typeof Briefcase; label: string; color: string }
-> = {
-  work: {
-    icon: Briefcase,
-    label: "Work",
-    color: "text-accent-light",
-  },
-  education: {
-    icon: GraduationCap,
-    label: "Education",
-    color: "text-emerald-300",
-  },
-  freelance: {
-    icon: Code2,
-    label: "Freelance",
-    color: "text-amber-300",
-  },
+const typeMeta: Record<ExperienceType, { icon: typeof Briefcase; label: string; color: string }> = {
+  work: { icon: Briefcase, label: "Work", color: "text-accent-light" },
+  education: { icon: GraduationCap, label: "Education", color: "text-emerald-300" },
+  projects: { icon: Code2, label: "Projects", color: "text-amber-300" },
 };
 
 export function Experience() {
@@ -30,14 +17,9 @@ export function Experience() {
       <div className="max-w-5xl mx-auto">
         <Reveal>
           <div className="mb-14">
-            <div className="text-xs uppercase tracking-[0.2em] text-charcoal-muted-deep mb-3 flex items-center gap-2">
-              <span className="font-mono text-accent">03</span>
-              <span className="w-8 h-px bg-accent/40" />
-              Experience
-            </div>
+            <Eyebrow file="experience.md" />
             <h2 className="text-4xl md:text-6xl text-white font-light font-display leading-tight">
-              The <span className="italic text-accent-light">journey</span> so
-              far.
+              How I got here.
             </h2>
           </div>
         </Reveal>
@@ -46,12 +28,12 @@ export function Experience() {
           <div className="absolute left-[19px] md:left-[23px] top-2 bottom-2 w-px bg-gradient-to-b from-accent/60 via-white/10 to-transparent" />
 
           <div className="space-y-10">
-            {experience.map((item, idx) => {
+            {experience.map((item) => {
               const meta = typeMeta[item.type];
               const Icon = meta.icon;
 
               return (
-                <Reveal key={item.id} animation="fadeLeft" delay={idx * 0.08}>
+                <Reveal key={item.id} animation="fadeLeft">
                   <div className="relative pl-14 md:pl-20 group">
                     <div className="absolute left-0 top-0 w-10 h-10 md:w-12 md:h-12 rounded-full bg-charcoal-surface border border-white/10 flex items-center justify-center group-hover:border-accent/50 transition-colors">
                       <Icon size={16} className={meta.color} />
@@ -69,25 +51,29 @@ export function Experience() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl md:text-2xl text-white font-display mb-1 leading-tight">
+                    <h3
+                      className={`text-xl md:text-2xl text-white font-display leading-tight ${
+                        item.company ? "mb-1" : "mb-3"
+                      }`}
+                    >
                       {item.role}
                     </h3>
 
-                    <div className="text-sm text-charcoal-muted mb-4">
-                      {item.company}
-                      {item.location && (
-                        <>
-                          <span className="text-charcoal-muted-deep mx-2">
-                            ·
-                          </span>
-                          <span className="text-charcoal-muted-deep">
-                            {item.location}
-                          </span>
-                        </>
-                      )}
-                    </div>
+                    {item.company && (
+                      <div className="text-sm text-charcoal-muted mb-4">
+                        <NoWrapParts text={item.company} />
+                        {item.location && (
+                          <>
+                            {" "}
+                            <span className="whitespace-nowrap text-charcoal-muted-deep">
+                              <span className="mx-1">·</span> {item.location}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                    )}
 
-                    <p className="text-sm md:text-base text-charcoal-muted leading-relaxed mb-4">
+                    <p className="text-sm md:text-base text-charcoal-muted leading-relaxed mb-4 last:mb-0">
                       {item.description}
                     </p>
 

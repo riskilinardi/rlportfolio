@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export default function Error({
@@ -26,7 +27,7 @@ export default function Error({
         </h1>
 
         <p className="text-charcoal-muted leading-relaxed mb-8">
-          Something unexpected broke. Try refreshing — and if the issue
+          Something unexpected broke. Try refreshing, and if the issue
           sticks around, please let me know.
         </p>
 
@@ -38,7 +39,7 @@ export default function Error({
             Try again
           </button>
 
-          <a
+          <Link
             href="/"
             className="group flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 text-sm text-white hover:border-accent/40 transition-colors"
           >
@@ -47,7 +48,7 @@ export default function Error({
               className="group-hover:-translate-x-0.5 transition-transform"
             />
             Back home
-          </a>
+          </Link>
         </div>
 
         {error.digest && (

@@ -1,56 +1,47 @@
-export type ProjectType =
-  | "web"
-  | "mobile"
-  | "desktop"
-  | "ai"
-  | "game"
-  | "other";
-
-export type ProjectCategory = "university" | "freelance" | "personal";
+export type ProjectType = "web" | "mobile" | "desktop" | "ai";
 
 export interface ProjectLinks {
   live?: string;
   github?: string;
-  demo?: string;
-  caseStudy?: string;
+}
+
+/** A number or outcome shown large on the card. */
+export interface ProjectMetric {
+  value: string;
+  label: string;
 }
 
 export interface Project {
   id: string;
-  slug: string;
   title: string;
-  tagline: string;
-  description: string;
+  /** Label parts shown above the title, joined with a middle dot. */
+  label: string[];
+  /** Highlights the first label part as live in production. */
+  live?: boolean;
+  /** Large projects get a full-width card; compact ones share a row. */
+  size: "large" | "compact";
   type: ProjectType;
-  category: ProjectCategory;
-  year: number;
-  featured?: boolean;
+  tagline: string;
+  metric?: ProjectMetric;
+  /** One line under the metric. Compact cards only. */
+  story?: string;
+  /** Short bullets. Compact cards fold them into "Under the hood". */
+  highlights: string[];
+  note?: string;
+  underTheHood?: string[];
   tech: string[];
   links?: ProjectLinks;
+  /** Screenshot path, plus its real size so the frame keeps its shape. */
   image?: string;
-  highlights?: string[];
+  imageSize?: { width: number; height: number };
 }
 
-export type SkillCategory =
-  | "language"
-  | "framework"
-  | "tool"
-  | "design"
-  | "database"
-  | "cloud";
-
-export interface Skill {
-  name: string;
-  category: SkillCategory;
-  featured?: boolean;
-}
-
-export type ExperienceType = "work" | "education" | "freelance";
+export type ExperienceType = "work" | "education" | "projects";
 
 export interface ExperienceItem {
   id: string;
   role: string;
-  company: string;
+  company?: string;
   location?: string;
   period: string;
   description: string;
@@ -58,13 +49,14 @@ export interface ExperienceItem {
   type: ExperienceType;
 }
 
-export type SocialPlatform =
-  | "github"
-  | "linkedin"
-  | "email"
-  | "twitter"
-  | "instagram"
-  | "dribbble";
+export interface Award {
+  title: string;
+  year: string;
+  issuer: string;
+  detail?: string;
+}
+
+export type SocialPlatform = "github" | "linkedin" | "email";
 
 export interface SocialLink {
   platform: SocialPlatform;
@@ -75,21 +67,24 @@ export interface SocialLink {
 export interface Stat {
   value: string;
   label: string;
+  /** Shows a pulsing green dot beside the value. */
+  live?: boolean;
+  href?: string;
 }
 
 export interface SiteConfig {
   name: string;
-  fullName: string;
-  tagline: string;
   description: string;
   url: string;
   location: string;
   availableForWork: boolean;
+  /** The headline fact in the hero's short version. */
   currentStatus: string;
+  school: string;
   email: string;
-  responseTime?: string;
+  resume: string;
   socials: SocialLink[];
   stats: Stat[];
   bio: string[];
-  photo?: string;
+  photo: string;
 }

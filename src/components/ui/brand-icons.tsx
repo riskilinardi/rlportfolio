@@ -1,4 +1,6 @@
-import type { SVGProps } from "react";
+import type { ComponentType, SVGProps } from "react";
+import { Mail } from "lucide-react";
+import type { SocialPlatform } from "@/types";
 
 interface IconProps extends SVGProps<SVGSVGElement> {
   size?: number | string;
@@ -41,3 +43,9 @@ export function LinkedinIcon({ size = 24, className, ...props }: IconProps) {
     </svg>
   );
 }
+
+export const SOCIAL_ICONS: Record<SocialPlatform, ComponentType<IconProps>> = {
+  github: GithubIcon,
+  linkedin: LinkedinIcon,
+  email: Mail,
+};
