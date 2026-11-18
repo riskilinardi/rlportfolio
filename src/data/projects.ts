@@ -15,7 +15,7 @@ export const projects: Project[] = [
     highlights: [
       "Quotes, orders, deliveries, invoices and returns, all in one place.",
       "A dashboard shows revenue, unpaid invoices, stock value and low-stock alerts.",
-      "Staff changes to deliveries need approval, and completed orders are locked.",
+      "Staff edits to an order wait for admin approval, and the invoice and receipt only unlock once every item is delivered.",
     ],
     note: "I'm the lead developer, working with a co-developer. It's an internal tool, so there's no public demo.",
     underTheHood: [
@@ -90,7 +90,7 @@ export const projects: Project[] = [
     size: "compact",
     type: "ai",
     tagline: "A fake news detector that shows you which words made it decide.",
-    metric: { value: "68% → 71%", label: "accuracy, once it knew who said it and where" },
+    metric: { value: "69% → 71%", label: "accuracy, once it knew who said it and where" },
     story: "The surprise: a bigger model wasn't the fix. More context was.",
     highlights: [
       "I compared five models, from Naive Bayes to a fine-tuned BERT.",
@@ -143,12 +143,11 @@ export const projects: Project[] = [
     story: "In a crisis it switches to high contrast and shows only what matters, even offline.",
     highlights: [
       "Usability scored 76.4 on the SUS scale.",
-      "Calm mode builds good habits through streaks, points and community goals.",
+      "Calm mode builds good habits through streaks, points and badges.",
     ],
     underTheHood: [
       "Built solo in Flutter and Dart, designed for clarity so people can find critical information fast in a stressful moment.",
       "REST APIs deliver emergency alerts and safety updates.",
-      "I owned the whole stack: UI, frontend and backend.",
     ],
     tech: ["Flutter", "Dart", "SQLite", "REST APIs", "Figma"],
     links: { github: "https://github.com/riskilinardi/TogetherSafe" },
